@@ -41,9 +41,14 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
                 api(compose.ui)
+
                 implementation("org.jetbrains.compose.components:components-resources:1.4.0-alpha01-dev942")
                 implementation("ca.gosyer:accompanist-pager:0.25.2")
                 implementation("io.github.qdsfdhvh:image-loader:1.2.10")
+
+                implementation(libs.voyager.navigator)
+                implementation(libs.voyager.tabNavigator)
+                implementation(libs.voyager.transitions)
             }
         }
         val commonTest by getting {

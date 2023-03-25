@@ -1,5 +1,6 @@
 package nolambda.techstack.desktop
 
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,7 +19,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.WindowSize
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import nolambda.techstack.common.Application
@@ -78,3 +78,12 @@ fun main() = application {
         }
     }
 }
+
+@Preview
+@Composable
+fun Preview() {
+    MyApplicationTheme {
+        Application()
+    }
+}
+

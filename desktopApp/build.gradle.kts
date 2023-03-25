@@ -24,4 +24,5 @@ compose.desktop {
 dependencies {
     implementation(project(":common"))
     implementation(compose.desktop.currentOs)
+    implementation(compose.preview)
 }
