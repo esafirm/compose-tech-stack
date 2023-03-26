@@ -38,11 +38,11 @@ fun rememberFloatProgressionAsAnimation(
     min: Float,
     progression: Float,
 ): Float {
-    val toolbarHeight = remember(value) {
+    val targetValue = remember(value) {
         val progress = value * progression
         max(min, max - progress)
     }
-    val animatedValue by animateFloatAsState(targetValue = toolbarHeight.toFloat())
+    val animatedValue by animateFloatAsState(targetValue = targetValue)
 
     return animatedValue
 }

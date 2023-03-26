@@ -12,19 +12,21 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 
 @Composable
-internal fun AppDetailToolbarView() {
+internal fun AppDetailToolbarView(
+    modifier: Modifier = Modifier,
+) {
     val navigator = LocalNavigator.currentOrThrow
 
     Row(
-        modifier = Modifier.fillMaxWidth()
-            .height(56.dp)
-            .padding(horizontal = 8.dp)
-
+        modifier = modifier.composed {
+            Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+        }
     ) {
         IconButton(
             onClick = navigator::pop
