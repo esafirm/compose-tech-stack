@@ -1,5 +1,6 @@
 package nolambda.techstack.app.appdetail.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -14,7 +15,8 @@ internal fun DetailItemView(
 ) {
     Text(
         text = item,
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            .fillMaxWidth(),
         style = MaterialTheme.typography.body1,
         fontWeight = FontWeight.SemiBold,
     )

@@ -1,9 +1,11 @@
 package nolambda.techstack.app.appdetail.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
@@ -24,10 +26,11 @@ fun MaterialTabIndicator(
     backgroundColor: Color = Color.Transparent,
     indicatorColor: Color = MaterialTheme.colors.primary,
 ) {
-    TabRow(
+    ScrollableTabRow(
         selectedTabIndex = selectedTabIndex,
         backgroundColor = backgroundColor,
         contentColor = Color.Transparent,
+        modifier = Modifier.fillMaxWidth(),
         indicator = { tabPositions ->
             TabRowDefaults.Indicator(
                 modifier = Modifier.tabIndicatorOffset(currentTabPosition = tabPositions[selectedTabIndex])
