@@ -1,18 +1,14 @@
 package nolambda.techstack.app.appdetail.components
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -23,29 +19,30 @@ internal fun AppDetailToolbarView(
 ) {
     val navigator = LocalNavigator.currentOrThrow
 
-    Row(
-        modifier = modifier.composed {
-            Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+    TopAppBar(
+        modifier = modifier,
+        backgroundColor = androidx.compose.ui.graphics.Color.White,
+        elevation = 0.dp,
+        title = { Box(Modifier) },
+        navigationIcon = {
+            IconButton(
+                onClick = navigator::pop
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = null
+                )
+            }
+        },
+        actions = {
+            IconButton(
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = null
+                )
+            }
         }
-    ) {
-        IconButton(
-            onClick = navigator::pop
-        ) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null
-            )
-        }
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        IconButton(
-            onClick = { /*TODO*/ }
-        ) {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = null
-            )
-        }
-    }
+    )
 }

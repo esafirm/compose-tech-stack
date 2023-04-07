@@ -1,4 +1,4 @@
-package nolambda.techstack.app.model
+package nolambda.techstack.app.data
 
 data class AppData(
     val appName: String,

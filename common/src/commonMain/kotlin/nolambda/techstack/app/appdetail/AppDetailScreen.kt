@@ -1,6 +1,5 @@
 package nolambda.techstack.app.appdetail
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -25,6 +22,7 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import cafe.adriel.voyager.core.screen.Screen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -35,7 +33,7 @@ import nolambda.techstack.app.appdetail.components.AppDetailToolbarView
 import nolambda.techstack.app.appdetail.components.ItemsSortingView
 import nolambda.techstack.app.appdetail.components.LibrariesIconsView
 import nolambda.techstack.app.appdetail.components.MaterialTabIndicator
-import nolambda.techstack.app.appdetail.components.pager.NativeLibrariesListView
+import nolambda.techstack.app.appdetail.components.pager.SimplePagerListView
 import nolambda.techstack.app.home.AppItem
 import nolambda.techstack.app.utils.rememberFloatProgressionAsAnimation
 
@@ -48,14 +46,63 @@ class AppDetailScreen(
             size = appItem.nativeLibs.length,
             initialItems = { appItem.nativeLibs.split("") },
             composable = { items ->
-                NativeLibrariesListView(items.toList())
+                SimplePagerListView(items.toList())
             }
         ),
         DetailTabs.SERVICES to PagerContent(
             size = appItem.nativeLibs.length,
             initialItems = { appItem.nativeLibs.split("") },
             composable = { items ->
-                NativeLibrariesListView(items.toList())
+                SimplePagerListView(items.toList())
+            }
+        ),
+        DetailTabs.ACTIVITIES to PagerContent(
+            size = appItem.nativeLibs.length,
+            initialItems = { appItem.nativeLibs.split("") },
+            composable = { items ->
+                SimplePagerListView(items.toList())
+            }
+        ),
+        DetailTabs.RECEIVERS to PagerContent(
+            size = appItem.nativeLibs.length,
+            initialItems = { appItem.nativeLibs.split("") },
+            composable = { items ->
+                SimplePagerListView(items.toList())
+            }
+        ),
+        DetailTabs.PROVIDERS to PagerContent(
+            size = appItem.nativeLibs.length,
+            initialItems = { appItem.nativeLibs.split("") },
+            composable = { items ->
+                SimplePagerListView(items.toList())
+            }
+        ),
+        DetailTabs.PERMISSIONS to PagerContent(
+            size = appItem.nativeLibs.length,
+            initialItems = { appItem.nativeLibs.split("") },
+            composable = { items ->
+                SimplePagerListView(items.toList())
+            }
+        ),
+        DetailTabs.META_DATA to PagerContent(
+            size = appItem.nativeLibs.length,
+            initialItems = { appItem.nativeLibs.split("") },
+            composable = { items ->
+                SimplePagerListView(items.toList())
+            }
+        ),
+        DetailTabs.DEX to PagerContent(
+            size = appItem.nativeLibs.length,
+            initialItems = { appItem.nativeLibs.split("") },
+            composable = { items ->
+                SimplePagerListView(items.toList())
+            }
+        ),
+        DetailTabs.SIGNATURE to PagerContent(
+            size = appItem.nativeLibs.length,
+            initialItems = { appItem.nativeLibs.split("") },
+            composable = { items ->
+                SimplePagerListView(items.toList())
             }
         ),
     )
@@ -87,7 +134,7 @@ class AppDetailScreen(
     override fun Content() {
         val scope = rememberCoroutineScope()
         val verticalScrollState = rememberScrollState()
-        val toolbarHeight = 56.dp
+        val toolbarHeight = 64.dp
 
         val animatedAlpha = rememberFloatProgressionAsAnimation(
             value = verticalScrollState.value.toFloat(),
@@ -100,15 +147,15 @@ class AppDetailScreen(
             val screenHeight = maxHeight
 
             AppDetailToolbarView(
-                modifier = Modifier.height(toolbarHeight)
+                modifier = Modifier.height(toolbarHeight).zIndex(1f)
             )
 
             Column(
                 modifier = Modifier.fillMaxSize().verticalScroll(verticalScrollState)
             ) {
+                Spacer(modifier = Modifier.requiredHeight(toolbarHeight))
                 Column(
-                    modifier = Modifier.padding(top = toolbarHeight)
-                        .alpha(animatedAlpha)
+                    modifier = Modifier.alpha(animatedAlpha)
                 ) {
                     AppDetailItemView(appItem, Modifier.padding(horizontal = 16.dp))
                     Spacer(modifier = Modifier.requiredHeight(8.dp))
