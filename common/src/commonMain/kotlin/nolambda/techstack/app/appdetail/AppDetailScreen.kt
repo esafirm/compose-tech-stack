@@ -18,6 +18,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -33,7 +34,10 @@ import nolambda.techstack.app.appdetail.components.AppDetailToolbarView
 import nolambda.techstack.app.appdetail.components.ItemsSortingView
 import nolambda.techstack.app.appdetail.components.LibrariesIconsView
 import nolambda.techstack.app.appdetail.components.MaterialTabIndicator
+import nolambda.techstack.app.appdetail.components.pager.FilterableItem
+import nolambda.techstack.app.appdetail.components.pager.FilterableListView
 import nolambda.techstack.app.appdetail.components.pager.SimplePagerListView
+import nolambda.techstack.app.appdetail.components.pager.TwoRowPagerListView
 import nolambda.techstack.app.home.AppItem
 import nolambda.techstack.app.utils.rememberFloatProgressionAsAnimation
 
@@ -81,14 +85,24 @@ class AppDetailScreen(
             size = appItem.nativeLibs.length,
             initialItems = { appItem.nativeLibs.split("") },
             composable = { items ->
-                SimplePagerListView(items.toList())
+                FilterableListView(items.map {
+                    FilterableItem(
+                        text = it,
+                        identifier = "NOT GRANTED",
+                        color = Color.Red
+                    )
+                })
             }
         ),
         DetailTabs.META_DATA to PagerContent(
             size = appItem.nativeLibs.length,
-            initialItems = { appItem.nativeLibs.split("") },
+            initialItems = {
+                appItem.nativeLibs.split("").map {
+                    Pair("Key of $it", "Value of $it")
+                }
+            },
             composable = { items ->
-                SimplePagerListView(items.toList())
+                TwoRowPagerListView(items.toList())
             }
         ),
         DetailTabs.DEX to PagerContent(

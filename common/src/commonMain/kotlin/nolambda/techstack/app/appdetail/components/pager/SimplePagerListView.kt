@@ -10,16 +10,16 @@ import nolambda.techstack.app.appdetail.components.EmptyView
 
 @Composable
 internal fun SimplePagerListView(
-    nativeLibs: List<String>,
+    itemContent: List<String>,
 ) {
-    if (nativeLibs.isEmpty()) {
+    if (itemContent.isEmpty()) {
         EmptyView()
         return
     }
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
-        items(nativeLibs) { lib ->
+        items(itemContent) { lib ->
             DetailItemView(lib)
         }
     }

@@ -22,6 +22,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import nolambda.techstack.app.Application
+import nolambda.techstack.app.appdetail.components.DetailItemView
 
 @Composable
 fun MyApplicationTheme(
@@ -83,7 +84,10 @@ fun main() = application {
 @Composable
 fun Preview() {
     MyApplicationTheme {
-        Application()
+        DetailItemView(
+            firstRow = "First Row",
+            secondRow = "Second Row"
+        )
     }
 }
 
